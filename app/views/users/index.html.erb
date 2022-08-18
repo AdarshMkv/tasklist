@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %>
+  <style>table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Date Of Birth</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<tbody>
+
+
+<div id="users">
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.dob %></td>
+    <td><%= link_to "Show", user %></td>
+  </tr>
+  <% end %>
+</div>
+</tbody>
+</table>
+<br>
+
+<%= link_to "New user", new_user_path %>
