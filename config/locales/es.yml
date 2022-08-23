@@ -29,13 +29,13 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+es:
+  hello: "Hola Mundo"
   link:
-   sign_up: "Sign Up"
-   sign_in: "Sign In"
-   edit_profile: "Edit Profile"
-   user_list: "Users List"
-   task_list: "Task List"
-   new_task: "New Task"
-   logout: "Logout"
+   sign_up: "Inscribirse"
+   sign_in: "Registrarse"
+   edit_profile: "Editar perfil"
+   user_list: "Lista de usuarios"
+   task_list: "Lista de tareas"
+   new_task: "Nueva tarea"
+   logout: "Cerrar sesión"
