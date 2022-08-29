@@ -13,6 +13,14 @@ class TasksController < ApplicationController
         response.headers['Content-Disposition'] = "attachment; filename=tasks.csv"
         render template: "tasks/index"
       end
+
+      format.pdf do 
+        pdf = TaskPdf.new(@tasks)
+        send_data pdf.render, 
+        filename: 'task.pdf',
+        type: 'application/pdf',
+        disposition: 'attachment'
+      end
     end
   end
 

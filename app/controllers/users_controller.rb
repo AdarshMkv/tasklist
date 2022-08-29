@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   require 'csv'
+  require 'prawn'
   # GET /users or /users.json
   def index
     @users = User.all
@@ -8,12 +9,22 @@ class UsersController < ApplicationController
 
     respond_to do | format |
       format.html
-      format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=users.csv"
-        render template: "users/index"
+       format.csv do
+         response.headers['Content-Type'] = 'text/csv'
+         response.headers['Content-Disposition'] = "attachment; filename=users.csv"
+         render template: "users/index"
+       end
+
+      format.pdf do 
+        pdf = UserPdf.new(@users)
+        send_data pdf.render, 
+        filename: 'user.pdf',
+         type: 'application/pdf',
+          disposition: 'attachment'
       end
     end
+
+    
 
   end
 
