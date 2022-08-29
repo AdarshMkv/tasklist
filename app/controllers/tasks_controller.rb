@@ -6,9 +6,13 @@ class TasksController < ApplicationController
     @tasks = Task.all
     @users = User.all
 
-    respond_to do |format|
+    respond_to do | format |
       format.html
-      format.csv { send_data Task.to_csv(@tasks), filename: "users-#{Date.today}.csv" }
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=tasks.csv"
+        render template: "tasks/index"
+      end
     end
   end
 

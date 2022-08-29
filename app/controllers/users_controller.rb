@@ -6,10 +6,15 @@ class UsersController < ApplicationController
     @users = User.all
     @tasks = Task.all
 
-    respond_to do |format|
+    respond_to do | format |
       format.html
-      format.csv { send_data User.to_csv(@users), filename: "users-#{Date.today}.csv" }
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=users.csv"
+        render template: "users/index"
+      end
     end
+
   end
 
   # GET /users/1 or /users/1.json
@@ -78,6 +83,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :dob, :email)
+      params.require(:user).permit(:first_name, :last_name, :dob)
     end
 end

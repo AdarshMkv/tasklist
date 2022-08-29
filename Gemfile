@@ -43,6 +43,8 @@ gem "tzinfo-data", '~> 1.2021', '>= 1.2021.5'
 
 gem 'rails-i18n'
 
+
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
