@@ -15,7 +15,7 @@ class TasksController < ApplicationController
       end
 
       format.pdf do 
-        pdf = TaskPdf.new(@tasks)
+        pdf = TaskPdf.new(@tasks,@users)
         send_data pdf.render, 
         filename: 'task.pdf',
         type: 'application/pdf',
