@@ -1,10 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  require 'csv'
   # GET /tasks or /tasks.json
   def index
     @tasks = Task.all
     @users = User.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Task.to_csv(@tasks), filename: "users-#{Date.today}.csv" }
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
