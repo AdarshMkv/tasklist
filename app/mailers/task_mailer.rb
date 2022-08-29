@@ -11,4 +11,10 @@ class TaskMailer < ApplicationMailer
         @task=task
         mail(to: @user.email,subject:"Task Update")
     end
+
+    def duedate_reminder(user,task)
+        @user=user
+        @task=task
+        mail(to: @user.email,subject:"Reminder: Task DueDate Crossed")
+    end
 end
