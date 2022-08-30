@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  protect_from_forgery with: :null_session
   require 'csv'
   require 'prawn'
   # GET /users or /users.json

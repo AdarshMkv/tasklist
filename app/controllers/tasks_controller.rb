@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  protect_from_forgery with: :null_session
   require 'csv'
   # GET /tasks or /tasks.json
   def index
@@ -63,9 +64,11 @@ class TasksController < ApplicationController
         TaskMailer.update_assigned_task(@user,@task).deliver_now
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
